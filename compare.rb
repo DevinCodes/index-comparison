@@ -75,5 +75,3 @@ end
 errors.concat(compare_records(objects.dup, stream_index)) if objects.size.positive?
 
 output_errors(errors, count)
-
-# TODO: check number of records. List missing/excess objectIDs.

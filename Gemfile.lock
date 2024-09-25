@@ -1,0 +1,28 @@
+GEM
+  specs:
+    algolia (2.3.2)
+      faraday (>= 0.15, < 3)
+      faraday-net_http_persistent (>= 0.15, < 3)
+      multi_json (~> 1.0)
+      net-http-persistent
+    connection_pool (2.4.1)
+    faraday (2.7.6)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.2)
+    faraday-net_http_persistent (2.1.0)
+      faraday (~> 2.5)
+      net-http-persistent (~> 4.0)
+    multi_json (1.15.0)
+    net-http-persistent (4.0.2)
+      connection_pool (~> 2.2)
+    ruby2_keywords (0.0.5)
+
+PLATFORMS
+  arm64-darwin-21
+
+DEPENDENCIES
+  algolia
+
+BUNDLED WITH
+   2.2.15
