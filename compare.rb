@@ -3,7 +3,7 @@ require 'algolia'
 stream_index = Algolia::Search::Client.create("APP_ID_1", "APP_KEY_1").init_index("INDEX_NAME_1")
 cpl_index = Algolia::Search::Client.create("APP_ID_2", "APP_KEY_2").init_index("INDEX_NAME_2")
 
-ATTRIBUTES_TO_IGNORE = [:_tags, :sku, :barcode]
+ATTRIBUTES_TO_IGNORE = [:_tags]
 
 fail_fast = false
 batch_size = 100
@@ -36,6 +36,12 @@ def compare(obj_1, obj_2)
     if obj_1[key] != obj_2[key]
       errs.push("Different values for #{key} attribute in object #{obj_1[:objectID]}:\n   CPL:     #{obj_1[key]} \n   Stream:  #{obj_2[key]}")
     end
+  end
+
+  missing_keys = obj_2.keys - obj_1.keys
+  missing_keys.each do |key|
+    next if ATTRIBUTES_TO_IGNORE.include?(key)
+    errs.push("Missing value for #{key} attribute in object #{obj_1[:objectID]}:\n   Stream:  #{obj_2[key]}")
   end
 
   errs
