@@ -80,4 +80,11 @@ end
 
 errors.concat(compare_records(objects.dup, stream_index)) if objects.size.positive?
 
+obj_count_cpl = cpl_index.search('', { responseFields: ['nbHits'] })[:nbHits]
+obj_count_stream = stream_index.search('', { responseFields: ['nbHits'] })[:nbHits]
+
+if obj_count_cpl != obj_count_stream
+  errors.push("Number of records not equal: #{obj_count_cpl} for CPL and #{obj_count_stream} for Stream.")
+end
+
 output_errors(errors, count)
